@@ -313,9 +313,10 @@ def create_app() -> FastAPI:
             ):
                 if event.is_final_response() and event.content:
                     response_text = _final_response_text(event)
-        except Exception:
-            logger.exception("Agent run failed (user_id=%s, session_id=%s)", request.user_id, session_id)
-            raise HTTPException(status_code=502, detail="Agent execution failed") from None
+        except Exception as e:
+            error_msg = str(e)
+            logger.exception("Agent run failed (user_id=%s, session_id=%s): %s", request.user_id, session_id, error_msg)
+            raise HTTPException(status_code=502, detail=f"Agent execution failed: {error_msg}") from None
 
         return ChatResponse(
             session_id=session_id,

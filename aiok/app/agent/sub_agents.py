@@ -27,7 +27,7 @@ def make_pr_fetcher_agent() -> LlmAgent:
     return LlmAgent(
         name="PRFetcherAgent",
         model=settings.model,
-        instruction=PR_FETCHER_INSTRUCTION,
+        instruction=PR_FETCHER_INSTRUCTION.format(default_repo=settings.github_repo),
         tools=[github_toolset] if github_toolset else [],
         output_key="pr_info",
         **tool_callbacks(),
@@ -65,7 +65,7 @@ def make_pr_collector_agent() -> LlmAgent:
     return LlmAgent(
         name="PRCollectorAgent",
         model=settings.model,
-        instruction=PR_COLLECTOR_INSTRUCTION,
+        instruction=PR_COLLECTOR_INSTRUCTION.format(default_repo=settings.github_repo),
         tools=[github_toolset] if github_toolset else [],
         output_key="collected_prs",
         **tool_callbacks(),
@@ -77,7 +77,7 @@ def make_issue_linker_agent() -> LlmAgent:
     return LlmAgent(
         name="IssueLinkerAgent",
         model=settings.model,
-        instruction=ISSUE_LINKER_INSTRUCTION,
+        instruction=ISSUE_LINKER_INSTRUCTION.format(default_repo=settings.github_repo),
         tools=[github_toolset] if github_toolset else [],
         output_key="linked_issues",
         **tool_callbacks(),
