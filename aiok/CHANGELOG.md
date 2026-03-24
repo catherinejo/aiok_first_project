@@ -12,3 +12,61 @@
 
 Test release notes EN
 
+## v2026.03.24-e2e4 - 2026-03-24
+
+## 🇰🇷 한국어
+
+## v2026.03.24-e2e4
+
+*   **커밋 SHA:** bf46673c0ce405e659dc60db69d9452cc27040ed
+    *   **작성자:** yhcho
+    *   **커밋 메시지:** refactor: ADK 멀티에이전트 구조로 전환
+
+        - src/aiok → app/ 구조로 변경 (ADK 권장 패턴)
+        - Supervisor 패턴 적용 (root_agent가 의도 분석 후 라우팅)
+        - PR 리뷰 워크플로우 추가 (Sequential: fetcher → analyzer → reviewer)
+        - 릴리즈 노트 워크플로우 추가 (Parallel + Sequential)
+        - GitHub MCP 연동 설정
+        - UI: 세션 사이드바, 파일 첨부 기능 추가
+
+        Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+*   **커밋 SHA:** 5813907634ce85fd99df63d4d656a17c1dbf00ec
+    *   **작성자:** yhcho
+    *   **커밋 메시지:** Initial commit: AIOK project setup
+
+        - Python backend with FastAPI + LangChain agent
+        - React + Vite frontend with chat interface
+        - Google Calendar/Gmail integration tools
+        - Project documentation
+
+        Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+
+---
+
+## 🇺🇸 English
+
+## v2026.03.24-e2e4
+
+*   **Commit SHA:** bf46673c0ce405e659dc60db69d9452cc27040ed
+    *   **Author:** yhcho
+    *   **Commit Message:** refactor: ADK 멀티에이전트 구조로 전환
+
+        - src/aiok → app/ 구조로 변경 (ADK 권장 패턴)
+        - Supervisor 패턴 적용 (root_agent가 의도 분석 후 라우팅)
+        - PR 리뷰 워크플로우 추가 (Sequential: fetcher → analyzer → reviewer)
+        - 릴리즈 노트 워크플로우 추가 (Parallel + Sequential)
+        - GitHub MCP 연동 설정
+        - UI: 세션 사이드바, 파일 첨부 기능 추가
+
+        Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+*   **Commit SHA:** 5813907634ce85fd99df63d4d656a17c1dbf00ec
+    *   **Author:** yhcho
+    *   **Commit Message:** Initial commit: AIOK project setup
+
+        - Python backend with FastAPI + LangChain agent
+        - React + Vite frontend with chat interface
+        - Google Calendar/Gmail integration tools
+        - Project documentation
+
+        Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+
