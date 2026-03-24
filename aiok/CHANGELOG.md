@@ -70,3 +70,62 @@ Test release notes EN
 
         Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
 
+## v2026.03.24-e2e6 - 2026-03-24
+
+## 🇰🇷 한국어
+
+# Release Notes
+
+## v2026.03.24-e2e6
+
+## ✨ New Features
+
+- **ADK Multi-Agent Architecture:** Transitioned to an ADK multi-agent architecture, restructuring the project layout for better organization and scalability.  The `src/aiok` directory has been moved to `app/` to follow ADK recommended practices.  Supervisor pattern implemented to enable routing after intent analysis by the `root_agent`.
+- **New Workflows:**
+    -  Added PR review workflow (Sequential: fetcher → analyzer → reviewer).
+    -  Implemented release note workflow (Parallel + Sequential).
+- **GitHub MCP Integration:** Integrated with GitHub MCP for enhanced project management capabilities.
+- **UI Enhancements:** Added session sidebar and file attachment functionality to the user interface.
+
+## 🛠️ Refactorings
+
+- **Project Restructuring:** Refactored the project structure from `src/aiok` to `app/` to align with ADK best practices.
+
+## 🚀 Initial Commit
+
+- Initial commit of the AIOK project, including:
+    - Python backend with FastAPI + LangChain agent.
+    - React + Vite frontend with chat interface.
+    - Google Calendar/Gmail integration tools.
+    - Project documentation.
+
+
+---
+
+## 🇺🇸 English
+
+# Release Notes
+
+## v2026.03.24-e2e6
+
+## ✨ New Features
+
+- **ADK Multi-Agent Architecture:** Transitioned to an ADK multi-agent architecture, restructuring the project layout for better organization and scalability. The `src/aiok` directory has been moved to `app/` to follow ADK recommended practices. Supervisor pattern implemented to enable routing after intent analysis by the `root_agent`.
+- **New Workflows:**
+    - Added PR review workflow (Sequential: fetcher → analyzer → reviewer).
+    - Implemented release note workflow (Parallel + Sequential).
+- **GitHub MCP Integration:** Integrated with GitHub MCP for enhanced project management capabilities.
+- **UI Enhancements:** Added session sidebar and file attachment functionality to the user interface.
+
+## 🛠️ Refactorings
+
+- **Project Restructuring:** Refactored the project structure from `src/aiok` to `app/` to align with ADK best practices.
+
+## 🚀 Initial Commit
+
+- Initial commit of the AIOK project, including:
+    - Python backend with FastAPI + LangChain agent.
+    - React + Vite frontend with chat interface.
+    - Google Calendar/Gmail integration tools.
+    - Project documentation.
+
