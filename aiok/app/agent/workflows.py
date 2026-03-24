@@ -1,17 +1,20 @@
-"""Agent workflows using Sequential and Parallel agents."""
+"""Agent workflows using Sequential agents."""
 
 from __future__ import annotations
 
-from google.adk.agents.parallel_agent import ParallelAgent
 from google.adk.agents.sequential_agent import SequentialAgent
 
 from app.agent.sub_agents import (
     make_classifier_agent,
+    make_commit_collector_agent,
     make_issue_linker_agent,
+    make_notion_publisher_agent,
     make_pr_analyzer_agent,
     make_pr_collector_agent,
     make_pr_fetcher_agent,
     make_pr_reviewer_agent,
+    make_release_translator_agent,
+    make_release_publisher_agent,
     make_release_writer_agent,
 )
 
@@ -33,17 +36,19 @@ pr_review_workflow = SequentialAgent(
 
 
 # =============================================================================
-# Release Notes Workflow (Parallel + Sequential)
+# Release Notes Workflow (Sequential)
 # =============================================================================
-# [parallel: pr_collector, issue_linker] → classifier → writer
+# [collect sequentially: pr_collector -> issue_linker -> commit_collector]
+# -> classifier -> writer -> translator -> notion_publisher -> release_publisher
 
-parallel_collect_agent = ParallelAgent(
+parallel_collect_agent = SequentialAgent(
     name="ParallelCollectAgent",
     sub_agents=[
         make_pr_collector_agent(),
         make_issue_linker_agent(),
+        make_commit_collector_agent(),
     ],
-    description="PR과 이슈를 병렬로 수집한다.",
+    description="PR, 이슈, 커밋을 순차 수집한다.",
 )
 
 release_notes_workflow = SequentialAgent(
@@ -52,6 +57,9 @@ release_notes_workflow = SequentialAgent(
         parallel_collect_agent,
         make_classifier_agent(),
         make_release_writer_agent(),
+        make_release_translator_agent(),
+        make_notion_publisher_agent(),
+        make_release_publisher_agent(),
     ],
     description="릴리즈 노트를 자동 생성한다.",
 )

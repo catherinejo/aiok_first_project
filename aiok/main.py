@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import os
 import uuid
+import asyncio
 from contextlib import asynccontextmanager
 from datetime import datetime
 from typing import Annotated, AsyncGenerator
@@ -305,18 +306,36 @@ def create_app() -> FastAPI:
         )
 
         response_text = ""
-        try:
-            async for event in runner.run_async(
-                user_id=request.user_id,
-                session_id=session_id,
-                new_message=user_message,
-            ):
-                if event.is_final_response() and event.content:
-                    response_text = _final_response_text(event)
-        except Exception as e:
-            error_msg = str(e)
-            logger.exception("Agent run failed (user_id=%s, session_id=%s): %s", request.user_id, session_id, error_msg)
-            raise HTTPException(status_code=502, detail=f"Agent execution failed: {error_msg}") from None
+        last_error = ""
+        max_attempts = 2
+        for attempt in range(1, max_attempts + 1):
+            try:
+                async for event in runner.run_async(
+                    user_id=request.user_id,
+                    session_id=session_id,
+                    new_message=user_message,
+                ):
+                    if event.is_final_response() and event.content:
+                        response_text = _final_response_text(event)
+                break
+            except Exception as e:
+                last_error = str(e)
+                is_quota_error = "RESOURCE_EXHAUSTED" in last_error or "429" in last_error
+                if is_quota_error and attempt < max_attempts:
+                    logger.warning(
+                        "Agent quota hit (attempt=%s/%s), retrying after backoff...",
+                        attempt,
+                        max_attempts,
+                    )
+                    await asyncio.sleep(3)
+                    continue
+                logger.exception(
+                    "Agent run failed (user_id=%s, session_id=%s): %s",
+                    request.user_id,
+                    session_id,
+                    last_error,
+                )
+                raise HTTPException(status_code=502, detail=f"Agent execution failed: {last_error}") from None
 
         return ChatResponse(
             session_id=session_id,

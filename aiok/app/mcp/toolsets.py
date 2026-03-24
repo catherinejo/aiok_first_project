@@ -48,3 +48,24 @@ if settings.enable_github_mcp and settings.github_token:
         tool_name_prefix="github_",
     )
     print(f"GitHub MCP enabled (repo: {settings.github_repo})")
+
+
+# Notion MCP Toolset
+notion_toolset: MCPToolset | None = None
+
+if settings.enable_notion_mcp and settings.notion_token:
+    notion_toolset = MCPToolset(
+        connection_params=StdioConnectionParams(
+            server_params=StdioServerParameters(
+                command="npx",
+                args=["-y", "@notionhq/notion-mcp-server"],
+                env={
+                    **os.environ,
+                    "NOTION_TOKEN": settings.notion_token,
+                },
+            ),
+            timeout=15.0,
+        ),
+        tool_name_prefix="notion_",
+    )
+    print("Notion MCP enabled")

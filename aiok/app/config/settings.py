@@ -56,8 +56,11 @@ class Settings:
     # MCP
     enable_calendar_mcp: bool = os.getenv("ENABLE_CALENDAR_MCP", "false").lower() == "true"
     enable_github_mcp: bool = os.getenv("ENABLE_GITHUB_MCP", "false").lower() == "true"
+    enable_notion_mcp: bool = os.getenv("ENABLE_NOTION_MCP", "false").lower() == "true"
     github_token: str | None = os.getenv("GITHUB_TOKEN")
     github_repo: str = os.getenv("GITHUB_REPO", "catherinejo/aiok_first_project")
+    notion_token: str | None = os.getenv("NOTION_TOKEN")
+    notion_page_id: str | None = os.getenv("NOTION_PAGE_ID")
 
     @property
     def is_production(self) -> bool:
