@@ -129,3 +129,41 @@ Test release notes EN
     - Google Calendar/Gmail integration tools.
     - Project documentation.
 
+## v2026.03.25 - 2026-03-25
+
+## 🇰🇷 한국어
+
+# Release Notes
+
+## ✨ New Features
+- automate release publication workflow (yhcho)
+- GitHub 저장소 동적 지정 및 로그 패널 추가 (yhcho) - PR #1
+
+## 🔧 Improvements
+- ADK 멀티에이전트 구조로 전환 (yhcho)
+
+## 📝 Documentation
+- refresh README and presentation, unify prompt format (yhcho)
+- update changelog for v2026.03.24-e2e6 (yhcho)
+- update changelog for v2026.03.24-e2e4 (yhcho)
+- update changelog for v2026.03.24-test (yhcho)
+
+---
+
+## 🇺🇸 English
+
+# Release Notes
+
+## ✨ New Features
+- automate release publication workflow (yhcho)
+- GitHub repository dynamic designation and log panel addition (yhcho) - PR #1
+
+## 🔧 Improvements
+- Transition to ADK multi-agent architecture (yhcho)
+
+## 📝 Documentation
+- refresh README and presentation, unify prompt format (yhcho)
+- update changelog for v2026.03.24-e2e6 (yhcho)
+- update changelog for v2026.03.24-e2e4 (yhcho)
+- update changelog for v2026.03.24-test (yhcho)
+
